@@ -1,0 +1,27 @@
+# Eclipse
+*.class
+.project
+.gradle
+.classpath
+.checkstyle
+.settings
+.node
+*.launch
+/build/
+*/build/
+*/*/build/
+examples/*/build/
+extras/*/build/
+.factorypath
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# Eclipse/IntelliJ APT
+generated_src/
+generated_testSrc/
+generated/
