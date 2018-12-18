@@ -6,9 +6,7 @@ package com.github.jeremyjliu.day3;
 
 import com.github.jeremyjliu.AbstractAdventSolution;
 import com.google.common.base.Preconditions;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -50,7 +48,7 @@ public final class NoMatterHowYouSliceIt extends AbstractAdventSolution {
         claims.forEach(claim -> {
             for (int i = claim.getX(); i < claim.getX() + claim.getWidth(); i++) {
                 for (int j = claim.getY(); j < claim.getY() + claim.getHeight(); j++) {
-                    fabric[i][j]++;
+                    fabric[j][i]++;
                 }
             }
         });
@@ -58,7 +56,7 @@ public final class NoMatterHowYouSliceIt extends AbstractAdventSolution {
         int numInOverlapping = 0;
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
-                if (fabric[i][j] >= 2) {
+                if (fabric[j][i] >= 2) {
                     numInOverlapping++;
                 }
             }
