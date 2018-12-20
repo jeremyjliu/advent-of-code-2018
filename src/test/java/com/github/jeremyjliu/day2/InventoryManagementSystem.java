@@ -7,12 +7,15 @@ package com.github.jeremyjliu.day2;
 import com.github.jeremyjliu.AbstractAdventSolution;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class InventoryManagementSystem extends AbstractAdventSolution {
+    private static final Logger LOG = LoggerFactory.getLogger(InventoryManagementSystem.class);
 
     public InventoryManagementSystem() {
-        super(LoggerFactory.getLogger(InventoryManagementSystem.class), "/day2.txt");
+        super("/day2.txt");
     }
 
     private static Map<Character, Integer> getLetterMap(String input) {
@@ -23,8 +26,8 @@ public final class InventoryManagementSystem extends AbstractAdventSolution {
         return letterMap;
     }
 
-    @Override
-    public String partOne() {
+    @Test
+    public void partOne() {
         int numExactTwoLetters = 0;
         int numExactThreeLetters = 0;
         for (String input : inputLines) {
@@ -41,7 +44,7 @@ public final class InventoryManagementSystem extends AbstractAdventSolution {
                 }
             }
         }
-        return Integer.toString(numExactTwoLetters * numExactThreeLetters);
+        LOG.info("Result: {}", Integer.toString(numExactTwoLetters * numExactThreeLetters));
     }
 
     // returns the index of the only non matching letter, -1 otherwise
@@ -61,16 +64,15 @@ public final class InventoryManagementSystem extends AbstractAdventSolution {
         return result;
     }
 
-    @Override
-    public String partTwo() {
+    @Test
+    public void partTwo() {
         for (String input1 : inputLines) {
             for (String input2 : inputLines) {
                 int index = getOnlyNonMatchingLetterIndex(input1, input2);
                 if (index > -1) {
-                    return input1.substring(0, index) + input1.substring(index + 1);
+                    LOG.info("Result: {}", input1.substring(0, index) + input1.substring(index + 1));
                 }
             }
         }
-        return "";
     }
 }

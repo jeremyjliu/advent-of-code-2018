@@ -7,28 +7,28 @@ package com.github.jeremyjliu.day1;
 import com.github.jeremyjliu.AbstractAdventSolution;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class ChronalCalibration extends AbstractAdventSolution {
+    private static final Logger LOG = LoggerFactory.getLogger(ChronalCalibration.class);
 
     public ChronalCalibration() {
-        super(LoggerFactory.getLogger(ChronalCalibration.class), "/day1.txt");
+        super("/day1.txt");
     }
 
-    @Override
-    public String partOne() {
-        return inputLines.stream()
+    @Test
+    public void partOne() {
+        String answer = inputLines.stream()
                 .map(Integer::parseInt)
                 .reduce(0, Integer::sum)
                 .toString();
+        LOG.info("Result: {}", answer);
     }
 
-    @Override
-    public String partTwo() {
-        inputLines.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+    @Test
+    public void partTwo() {
         boolean foundRepeatedFrequency = false;
         Integer frequency = 0;
         Set<Integer> seenFrequencies = new HashSet<>(frequency);
@@ -42,6 +42,6 @@ public final class ChronalCalibration extends AbstractAdventSolution {
                 seenFrequencies.add(frequency);
             }
         }
-        return frequency.toString();
+        LOG.info("Result: {}", frequency.toString());
     }
 }

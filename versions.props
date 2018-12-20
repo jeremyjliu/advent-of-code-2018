@@ -1,4 +1,6 @@
 com.google.guava:guava = 27.0.1-jre
 org.immutables:value = 2.7.3
 org.slf4j:slf4j-simple = 1.7.25
+
 # Testing
+junit:junit = 4.12

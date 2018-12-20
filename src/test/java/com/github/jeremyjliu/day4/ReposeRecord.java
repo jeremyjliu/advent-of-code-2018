@@ -6,6 +6,8 @@ package com.github.jeremyjliu.day4;
 
 import com.github.jeremyjliu.AbstractAdventSolution;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -16,9 +18,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class ReposeRecord extends AbstractAdventSolution {
+    private static final Logger LOG = LoggerFactory.getLogger(ReposeRecord.class);
     private static final String INSTANCE_PATTERN = "yyyy-MM-dd HH:mm";
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(INSTANCE_PATTERN)
             .withZone(ZoneId.systemDefault());
@@ -27,7 +32,7 @@ public final class ReposeRecord extends AbstractAdventSolution {
     private Map<Integer, int[]> minutesAsleepByGuardId = new HashMap<>();
 
     public ReposeRecord() {
-        super(LoggerFactory.getLogger(ReposeRecord.class), "/day4.txt");
+        super("/day4.txt");
 
         // sort lines
         List<UnprocessedGuardEvent> unprocessedGuardEvents = parseGuardEvents(inputLines);
@@ -71,7 +76,7 @@ public final class ReposeRecord extends AbstractAdventSolution {
         for (UnprocessedGuardEvent event : unprocessedGuardEvents) {
             String eventMessage = event.getEventMessage();
             if (eventMessage.startsWith("Guard")) {
-                guardId = Integer.parseInt(eventMessage.split(" ")[1].substring(1));
+                guardId = Integer.parseInt(Iterables.get(Splitter.on(' ').split(eventMessage), 1).substring(1));
             } else if (eventMessage.startsWith("wakes up")) {
                 Preconditions.checkState(guardId != null);
                 processedEvents.add(ImmutableGuardEvent.builder()
@@ -110,13 +115,13 @@ public final class ReposeRecord extends AbstractAdventSolution {
         minutesAsleepByGuardId.put(guardId, minutesAsleep);
     }
 
-    @Override
-    public String partOne() {
+    @Test
+    public void partOne() {
         int maxGuardId = Collections.max(totalMinutesAsleepByGuardId.entrySet(),
                 Comparator.comparingInt(Map.Entry::getValue)).getKey();
 
         int maxIndex = getMaxMinuteInArray(minutesAsleepByGuardId.get(maxGuardId));
-        return Integer.toString(maxGuardId * maxIndex);
+        LOG.info("Result: {}", Integer.toString(maxGuardId * maxIndex));
     }
 
     private int getMaxMinuteInArray(int[] minutesAsleep) {
@@ -131,8 +136,8 @@ public final class ReposeRecord extends AbstractAdventSolution {
         return maxIndex;
     }
 
-    @Override
-    public String partTwo() {
+    @Test
+    public void partTwo() {
         int maxGuardId = Integer.MIN_VALUE;
         int maxIndex = Integer.MIN_VALUE;
         int maxMinutes = Integer.MIN_VALUE;
@@ -147,6 +152,6 @@ public final class ReposeRecord extends AbstractAdventSolution {
                 }
             }
         }
-        return Integer.toString(maxGuardId * maxIndex);
+        LOG.info("Result: {}", Integer.toString(maxGuardId * maxIndex));
     }
 }

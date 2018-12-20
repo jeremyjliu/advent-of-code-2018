@@ -10,15 +10,18 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class NoMatterHowYouSliceIt extends AbstractAdventSolution {
+    private static final Logger LOG = LoggerFactory.getLogger(NoMatterHowYouSliceIt.class);
     private static final Pattern PATTERN = Pattern.compile("^#(\\d*) @ (\\d*),(\\d*): (\\d*)x(\\d*)$");
     private static final int GRID_SIZE = 1000;
     private final List<Claim> claims;
 
     public NoMatterHowYouSliceIt() {
-        super(LoggerFactory.getLogger(NoMatterHowYouSliceIt.class), "/day3.txt");
+        super("/day3.txt");
         claims = parseClaims(inputLines);
     }
 
@@ -38,8 +41,8 @@ public final class NoMatterHowYouSliceIt extends AbstractAdventSolution {
                 }).collect(Collectors.toList());
     }
 
-    @Override
-    public String partOne() {
+    @Test
+    public void partOne() {
         int [][] fabric = new int[GRID_SIZE][];
         for (int i = 0; i < GRID_SIZE; i++) {
             fabric[i] = new int[GRID_SIZE];
@@ -61,11 +64,11 @@ public final class NoMatterHowYouSliceIt extends AbstractAdventSolution {
                 }
             }
         }
-        return Integer.toString(numInOverlapping);
+        LOG.info("Result: {}", Integer.toString(numInOverlapping));
     }
 
-    @Override
-    public String partTwo() {
+    @Test
+    public void partTwo() {
         int [][] fabric = new int[GRID_SIZE][];
         for (int i = 0; i < GRID_SIZE; i++) {
             fabric[i] = new int[GRID_SIZE];
@@ -90,9 +93,8 @@ public final class NoMatterHowYouSliceIt extends AbstractAdventSolution {
             }
 
             if (allOnes) {
-                return Integer.toString(claim.getId());
+                LOG.info("Result: {}", Integer.toString(claim.getId()));
             }
         }
-        return "";
     }
 }

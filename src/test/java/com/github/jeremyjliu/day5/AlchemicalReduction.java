@@ -5,18 +5,21 @@
 package com.github.jeremyjliu.day5;
 
 import com.github.jeremyjliu.AbstractAdventSolution;
+import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class AlchemicalReduction extends AbstractAdventSolution {
+    private static final Logger LOG = LoggerFactory.getLogger(AlchemicalReduction.class);
 
     public AlchemicalReduction() {
-        super(LoggerFactory.getLogger(AlchemicalReduction.class), "/day5.txt");
+        super("/day5.txt");
     }
 
-    @Override
-    public String partOne() {
+    @Test
+    public void partOne() {
         String polymer = inputLines.stream().findFirst().orElseThrow(() -> new RuntimeException("No polymer"));
-        return Integer.toString(reducePolymer(polymer).length());
+        LOG.info("Result: {}", Integer.toString(reducePolymer(polymer).length()));
     }
 
     // condenses polymer by matching consecutive letters until it cannot be reduced any longer
@@ -53,8 +56,8 @@ public final class AlchemicalReduction extends AbstractAdventSolution {
         return builder.toString();
     }
 
-    @Override
-    public String partTwo() {
+    @Test
+    public void partTwo() {
         String polymer = inputLines.stream().findFirst().orElseThrow(() -> new RuntimeException("No polymer"));
         int minPolymerLength = Integer.MAX_VALUE;
         for (int i = 0; i < 26; i++) {
@@ -63,7 +66,7 @@ public final class AlchemicalReduction extends AbstractAdventSolution {
             String reducedPolymer = reducePolymer(strippedPolymer);
             minPolymerLength = Math.min(minPolymerLength, reducedPolymer.length());
         }
-        return Integer.toString(minPolymerLength);
+        LOG.info("Result: {}", Integer.toString(minPolymerLength));
     }
 
     // assumes unit is lowercase
