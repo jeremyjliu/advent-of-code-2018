@@ -109,7 +109,6 @@ public final class ChronalCoordinates extends AbstractAdventSolution {
 
     private int getTotalDistanceToAllCoordinates(int xIndex, int yIndex) {
         int totalDistance = 0;
-        List<Coordinate> minCoordinates = new ArrayList<>();
         for (Coordinate coordinate : coordinates) {
             int distance = Math.abs(xIndex - coordinate.getX()) + Math.abs(yIndex - coordinate.getY());
             totalDistance += distance;
