@@ -4,3 +4,4 @@ org.slf4j:slf4j-simple = 1.7.25
 
 # Testing
 junit:junit = 4.12
+org.knowm.xchart:xchart = 3.5.2

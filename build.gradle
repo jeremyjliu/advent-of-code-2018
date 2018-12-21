@@ -31,4 +31,5 @@ dependencies {
     annotationProcessor 'org.immutables:value'
 
     testCompile 'junit:junit'
+    testCompile 'org.knowm.xchart:xchart'
 }
