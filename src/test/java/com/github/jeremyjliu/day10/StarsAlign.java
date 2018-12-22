@@ -23,7 +23,6 @@ public final class StarsAlign extends AbstractAdventSolution {
     private static final Logger LOG = LoggerFactory.getLogger(StarsAlign.class);
     private static final Pattern PATTERN =
             Pattern.compile("^position=<([ -]\\d*), ([ -]\\d*)> velocity=<([ -]\\d*), ([ -]\\d*)>$");
-    private static final int NUM_CYCLES_PER_REDRAW = 10;
 
     private List<Point> parsedPoints;
 
