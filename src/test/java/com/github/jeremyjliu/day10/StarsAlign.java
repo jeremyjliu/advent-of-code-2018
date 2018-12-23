@@ -73,7 +73,8 @@ public final class StarsAlign extends AbstractAdventSolution {
         final SwingWrapper<XYChart> sw = new SwingWrapper<>(chart);
         sw.displayChart();
 
-        while (true) {
+        int numCycle = 10;
+        while (numCycle > 0) {
             Thread.sleep(1000);
             LOG.info("Points: {}", points);
             points = updatePoints(points, 1);
@@ -88,6 +89,7 @@ public final class StarsAlign extends AbstractAdventSolution {
                 chart.updateXYSeries("stars", xData, yData, null);
                 sw.repaintChart();
             });
+            numCycle--;
         }
     }
 
