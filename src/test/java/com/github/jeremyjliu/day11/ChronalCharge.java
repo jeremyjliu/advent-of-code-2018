@@ -4,18 +4,13 @@
 
 package com.github.jeremyjliu.day11;
 
-import com.github.jeremyjliu.AbstractAdventSolution;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class ChronalCharge extends AbstractAdventSolution {
+public final class ChronalCharge {
     private static final Logger LOG = LoggerFactory.getLogger(ChronalCharge.class);
     private static final int GRID_SIZE = 300;
-
-    public ChronalCharge() {
-        super("/day11.txt");
-    }
 
     @Test
     public void partOne() {

@@ -165,6 +165,7 @@ public final class MineCartMadness extends AbstractAdventSolution {
     }
 
     @Test
+    // TODO(jeremyliu): refactor this to use 1 cart map, 1 queue and 1 deleted set
     public void partTwo() {
         // remove carts when they collide
         SortedSet<Cart> carts = new TreeSet<>(CART_COMPARATOR);
