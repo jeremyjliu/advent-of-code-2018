@@ -27,6 +27,7 @@ repositories {
 dependencies {
     compileOnly 'org.immutables:value::annotations' // needed for warning-free compilation
     implementation 'com.google.guava:guava'
+    implementation 'one.util:streamex'
     implementation 'org.slf4j:slf4j-simple'
     annotationProcessor 'org.immutables:value'
 
